@@ -45,6 +45,116 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
+-- Colors.
+-- Were named according to:
+--   <https://chir.ag/projects/name-that-color> 'Name That Color'.
+local color_palette = {
+  red = {
+    crimson = hsl(358, 100, 31),
+    engine = hsl(2, 75, 46),
+    venetian = hsl(6, 96, 59),
+  },
+
+  mustard = {
+    bronze = hsl(57, 79, 26),
+    citron = hsl(60, 71, 35),
+    acid = hsl(61, 66, 44),
+  },
+
+  yellow = {
+    philippine_gold = hsl(37, 80, 39),
+    goldenrod = hsl(40, 73, 49),
+    saffron = hsl(42, 95, 58),
+  },
+
+  blue = {
+    deep_cerulean = hsl(199, 96, 36),
+    bondi = hsl(188, 96, 36),
+    sapphire = hsl(190, 89, 25),
+    jelly_bean = 'hsl(183, 33, 40)',
+    morning = hsl(157, 16, 58),
+  },
+
+  purple = {
+    twilight_lavender = hsl(323, 39, 40),
+    turkish_rose = hsl(333, 34, 54),
+    puce = hsl(344, 47, 68),
+  },
+
+  aquamarine = {
+    amazon = hsl(143, 30, 37),
+    russian = hsl(122, 21, 51),
+    siam = hsl(98, 18, 53),
+    pistachio = hsl(104, 35, 62),
+  },
+
+  orange = {
+    rust = hsl(19, 97, 35),
+    metallic = hsl(24, 88, 45),
+    pumpkin = hsl(27, 99, 55),
+  },
+
+  white = {
+    white0 = hsl(53, 74, 91),
+    white1 = hsl(48, 87, 88),
+    white2 = hsl(44, 62, 83),
+    tan = hsl(43, 47, 77),
+  },
+
+  gray = {
+    hsl(43, 59, 81),
+    hsl(40, 38, 73),
+    hsl(39, 24, 66),
+    hsl(35, 17, 59),
+    hsl(30, 12, 51),
+  },
+
+  black = {
+    black0 = hsl(28, 11, 44),
+    black1 = hsl(27, 10, 36),
+    black2 = hsl(22, 7, 29),
+    black3 = hsl(20, 5, 22),
+    black5 = hsl(20, 3, 19),
+    black6 = hsl(0, 0, 16),
+    black7 = hsl(1, 6, 12),
+  },
+}
+
+-- Semantic colors.
+local semantic_palette = {
+  informational = {
+    color_palette.black.black7,
+    color_palette.black.black6,
+    color_palette.black.black5,
+    color_palette.black.black4,
+    color_palette.black.black3
+  },
+  --alert = color_palette.,
+  error = color_palette.red.crimson,
+  --success = color_palette.,
+
+  contrasting = color_palette.blue.deep_cerulean,
+  neutral = color_palette.white.white2,
+  subtle = {
+    color_palette.white.white1,
+    -- Language constants (Number, String, ...)
+    { color_palette.aquamarine.siam, color_palette.purple.puce }
+  },
+
+  emphasizing = color_palette.white.tan,
+
+  vague = color_palette.gray[4],
+  --matte = color_palette.,
+  inconspicious = {
+    color_palette.gray[4],
+    color_palette.gray[3],
+    color_palette.gray[2],
+    color_palette.white.tan,
+  }
+}
+
+local c = semantic_palette;
+
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
@@ -60,13 +170,13 @@ local theme = lush(function()
     --
     -- See :h highlight-groups
     --
-    -- ColorColumn  { }, -- Columns set with 'colorcolumn'
+     ColorColumn  { bg = c.inconspicious1}, -- Columns set with 'colorcolumn'
     -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    -- Cursor       { }, -- Character under the cursor
-    -- lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    -- CursorIM     { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    -- CursorLine   { }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+     --Cursor       { fg = c.error, bg = c.error }, -- Character under the cursor
+     lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+     --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
+     --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+     CursorLine   { bg = c. emphasizing }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     -- Directory    { }, -- Directory names (and other special names in listings)
     -- DiffAdd      { }, -- Diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
@@ -78,19 +188,19 @@ local theme = lush(function()
     -- ErrorMsg     { }, -- Error messages on the command line
     -- VertSplit    { }, -- Column separating vertically split windows
     -- Folded       { }, -- Line used for closed folds
-    -- FoldColumn   { }, -- 'foldcolumn'
-    -- SignColumn   { }, -- Column where |signs| are displayed
+     FoldColumn   { fg = c.vague, bg = c.inconspicious1 }, -- 'foldcolumn'
+     SignColumn   { fg = c.vague, bg = Normal.bg }, -- Column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute   { }, -- |:substitute| replacement text highlighting
-    -- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    -- CursorLineNr { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+     LineNr       { fg = c.vague }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+     CursorLineNr { fg = c.contrasting, bg = c.emphasizing }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- MatchParen   { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
-    -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    -- Normal       { }, -- Normal text
+     NonText      { fg = c.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+     Normal       { fg = c.informational[0], bg = c.neutral }, -- Normal text
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
     -- Pmenu        { }, -- Popup menu: Normal item.
@@ -114,7 +224,7 @@ local theme = lush(function()
     -- Visual       { }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     -- WarningMsg   { }, -- Warning messages
-    -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+     Whitespace   { fg = c.inconspicious[1] }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- Winseparator { }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
     -- WildMenu     { }, -- Current match in 'wildmenu' completion
 
@@ -126,20 +236,29 @@ local theme = lush(function()
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    -- Comment        { }, -- Any comment
+     Comment        { fg = c.contrasting }, -- Any comment
+    --CommentSemanticIndent1 { fg = c.error, bg = c.error },
+    --CommentSemanticIndent2 { fg = c.contrasting, bg = c.contrasting },
+    --CommentSemanticIndent3 { fg = c.subtle, bg = c.subtle },
 
-    -- Constant       { }, -- (*) Any constant
-    -- String         { }, --   A string constant: "this is a string"
-    -- Character      { }, --   A character constant: 'c', '\n'
-    -- Number         { }, --   A number constant: 234, 0xff
-    -- Boolean        { }, --   A boolean constant: TRUE, false
-    -- Float          { }, --   A floating point constant: 2.3e10
+    -- * Language constants.
+     String         { fg = c.subtle[2][1] }, --   A string constant: "this is a string"
+     Number         { fg = c.subtle[2][2] }, --   A number constant: 234, 0xff
+     Float          { fg = Number.fg.darken(1) }, --   A floating point constant: 2.3e10
+     Boolean        { fg = c.subtle[2][3]}, --   A boolean constant: TRUE, false
 
+     Character      { fg = c.inconspicious0 }, --   A character constant: 'c', '\n'
+
+    -- * Symbols.
+     Constant       { fg = c.informational[1] }, -- (*) Any constant
     -- Identifier     { }, -- (*) Any variable name
     -- Function       { }, --   Function name (also: methods for classes)
 
-    -- Statement      { }, -- (*) Any statement
-    -- Conditional    { }, --   if, then, else, endif, switch, etc.
+     Statement      { fg = c.informational[1] }, -- (*) Any statement
+     pythonInclude      { fg = c.error }, -- (*) Any statement
+     pythonStatement      { fg = c.error }, -- (*) Any statement
+
+     --Conditional    { }, --   if, then, else, endif, switch, etc.
     -- Repeat         { }, --   for, do, while, etc.
     -- Label          { }, --   case, default, etc.
     -- Operator       { }, --   "sizeof", "+", "*", etc.
