@@ -1,5 +1,10 @@
-A Lush Theme for Neovim.
-===
+# Table of Contents
 
-See: http://git.io/lush.nvim for more information on Lush and a helper script
-to setup your repo clone.
+- [Table of Contents](#table-of-contents)
+- [A Lush Theme for Neovim.](#a-lush-theme-for-neovim)
+
+# A Lush Theme for Neovim.
+
+DeadlySquad13's custom theme.
+Inspired by [gruvbox-material](https://github.com/sainnhe/gruvbox-material).
+Made with the help of [lush.nvim](http://git.io/lush.nvim).
