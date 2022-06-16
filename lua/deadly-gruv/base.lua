@@ -1,10 +1,9 @@
 local lush = require('lush')
 
-local delta = require('lush_theme.constants').delta;
+local delta = require('deadly-gruv.constants').delta;
 
-
-local c = require('lush_theme.colors').semantic_palette;
-local mc = require('lush_theme.colors').ordered_meta_groups;
+local c = require('deadly-gruv.colors').sp;
+local mc = require('deadly-gruv.colors').mc;
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -25,11 +24,11 @@ local M = lush(function()
      NonText      { fg = c.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
      ColorColumn  { bg = c.inconspicious1}, -- Columns set with 'colorcolumn'
     -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-     --Cursor       { fg = c.error, bg = c.error }, -- Character under the cursor
+     Cursor       { bg = c.highly_contrasting[2] }, -- Character under the cursor (during f-find as far as I noticed).
      lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
      --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
      --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-     CursorLine   { bg = c. emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+     CursorLine   { bg = c.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     -- Directory    { }, -- Directory names (and other special names in listings)
     -- DiffAdd      { }, -- Diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
@@ -39,7 +38,7 @@ local M = lush(function()
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
     -- ErrorMsg     { }, -- Error messages on the command line
-    -- VertSplit    { }, -- Column separating vertically split windows
+     --VertSplit    { fg = c.error, bg = c.error }, -- Column separating vertically split windows
      Folded       { fg = Normal.fg.lighten(5*delta), bg = Normal.bg.desaturate(3*delta).darken(3*delta) }, -- Line used for closed folds
      FoldColumn   { fg = c.vague, bg = c.inconspicious1 }, -- 'foldcolumn'
      SignColumn   { fg = c.vague, bg = Normal.bg }, -- Column where |signs| are displayed
@@ -61,22 +60,22 @@ local M = lush(function()
      --Question     { }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
      Search       { fg = Normal.bg.rotate(120).darken(5*delta) }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-    -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-    -- SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-     --StatusLine   { }, -- Status line of current window
+     --SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+     --SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+     --SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+     --SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+     --SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+     --StatusLine   { fg = c.error, bg = c.error }, -- Status line of current window
      --StatusLineNC { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-     --TabLine      { }, -- Tab pages line, not active tab page label
-     --TabLineFill  { }, -- Tab pages line, where there are no labels
-    -- TabLineSel   { }, -- Tab pages line, active tab page label
+     --TabLine      {  fg = c.error, bg = c.error }, -- Tab pages line, not active tab page label
+     --TabLineFill  { fg = c.error, bg = c.error }, -- Tab pages line, where there are no labels
+     --TabLineSel   {  fg = c.error, bg = c.error }, -- Tab pages line, active tab page label
      Title        { fg = mc.Symbols[1], gui = 'bold' }, -- Titles for output from ":set all", ":autocmd" etc.
      Visual       { bg = c.contrasting[3] }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
      WarningMsg   { fg = c.error }, -- Warning messages
      Whitespace   { fg = c.inconspicious[1] }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-     Winseparator { fg = c.emphasizing[1], }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+     Winseparator { fg = mc.Ui.Borders[1], }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
      WildMenu     { fg = c.inconspicious[1] }, -- Current match in 'wildmenu' completion
 
     -- Common vim syntax groups used for all kinds of code and markup.
@@ -102,7 +101,7 @@ local M = lush(function()
      Character      { fg = c.inconspicious[1] }, --   A character constant: 'c', '\n'
 
     -- * Symbols.
-     Function       { fg = c.informational[5], gui = 'bold' }, --   Function name (also: methods for classes)
+     Function       { fg = mc.Symbols[2], gui = 'bold' }, --   Function name (also: methods for classes)
      Identifier     { fg = mc.Symbols[1] }, -- (*) Any variable name
      Constant       { fg = mc.Symbols[1] }, -- (*) Any constant
 
@@ -110,7 +109,7 @@ local M = lush(function()
      --pythonAttribute { fg = c.error }, -- (*) Any statement
 
     -- Exception      { }, --   try, catch, throw
-     --Keyword        { fg = mc.ImportantFlowControlStatements, gui ='italic' }, --   any other keyword (return).
+    Keyword        { fg = mc.ImportantFlowControlStatements, gui ='italic' }, --   any other keyword (return).
     -- Label          { }, --   case, default, etc.
      Conditional    { fg = mc.FlowControlStatements, gui = 'italic' }, --   if, then, else, endif, switch, etc.
      Repeat         { fg = mc.FlowControlStatements, gui = 'italic' }, --   for, do, while, etc.

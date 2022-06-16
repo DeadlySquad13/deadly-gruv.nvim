@@ -14,12 +14,22 @@ vim.g.colors_name = 'deadly-gruv'
 --
 -- The performance impact of this call can be measured in the hundreds of
 -- *nanoseconds* and such could be considered "production safe".
-package.loaded['lush_theme.deadly-gruv'] = nil
---package.loaded['lush_theme.colors'] = nil
---package.loaded['lush_theme.treesitter'] = nil
---package.loaded['lush_theme.base'] = nil
+package.loaded['deadly-gruv'] = nil;
+package.loaded['deadly-gruv.base'] = nil;
+package.loaded['deadly-gruv.colors'] = nil;
+
+-- Languages.
+package.loaded['deadly-gruv.languages'] = nil;
+package.loaded['deadly-gruv.languages.json'] = nil;
+package.loaded['deadly-gruv.languages.python'] = nil;
+
+-- Plugins.
+package.loaded['deadly-gruv.plugins'] = nil;
+package.loaded['deadly-gruv.plugins.treesitter'] = nil;
+package.loaded['deadly-gruv.plugins.bufferline'] = nil;
+
 
 
 -- include our theme file and pass it to lush to apply
-require('lush')(require('lush_theme.deadly-gruv'))
+require('lush')(require('deadly-gruv'))
 
