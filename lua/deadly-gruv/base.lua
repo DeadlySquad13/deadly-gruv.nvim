@@ -22,8 +22,8 @@ local M = lush(function()
     --
      Normal       { fg = c.informational[1], bg = c.neutral }, -- Normal text
      NonText      { fg = c.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-     ColorColumn  { bg = c.inconspicious1}, -- Columns set with 'colorcolumn'
-    -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+     ColorColumn  { bg = c.neutral.darken(1*delta) }, -- Columns set with 'colorcolumn'
+     Conceal      { fg = c.inconspicious[2] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
      Cursor       { bg = c.highly_contrasting[2] }, -- Character under the cursor (during f-find as far as I noticed).
      lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
      --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
@@ -34,7 +34,7 @@ local M = lush(function()
     -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
     -- DiffDelete   { }, -- Diff mode: Deleted line |diff.txt|
     -- DiffText     { }, -- Diff mode: Changed text within a changed line |diff.txt|
-    -- EndOfBuffer  { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+     EndOfBuffer  { NonText }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
     -- ErrorMsg     { }, -- Error messages on the command line
@@ -61,12 +61,16 @@ local M = lush(function()
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
      Search       { fg = Normal.bg.rotate(120).darken(5*delta) }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
      --SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-     --SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+     SpellBad     { fg = c.error }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
      --SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
      --SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
      --SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-     --StatusLine   { fg = c.error, bg = c.error }, -- Status line of current window
-     --StatusLineNC { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+
+    -- * Should be different for tpipeline to work (otherwise ^^^^ will be
+    -- drawn instead of `fillchars`)
+     StatusLine   { NonText }, -- Status line of current window
+     StatusLineNC { fg = NonText.fg.lighten(delta), bg = NonText.bg }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+
      --TabLine      {  fg = c.error, bg = c.error }, -- Tab pages line, not active tab page label
      --TabLineFill  { fg = c.error, bg = c.error }, -- Tab pages line, where there are no labels
      --TabLineSel   {  fg = c.error, bg = c.error }, -- Tab pages line, active tab page label

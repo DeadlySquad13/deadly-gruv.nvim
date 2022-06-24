@@ -76,7 +76,7 @@ return {
     -- TSEnvironment        { } , -- Text environments of markup languages.
     -- TSEnvironmentName    { } , -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
     -- TSNote               { } , -- Text representation of an informational note.
-    -- TSWarning            { } , -- Text representation of a warning note.
+     --TSWarning            { fg = sp.error } , -- Text representation of a warning note.
     -- TSDanger             { } , -- Text representation of a danger note.
     -- TSType               { } , -- Type (and class) definitions and annotations.
     -- TSTypeBuiltin        { } , -- Built-in types: `i32` in Rust.

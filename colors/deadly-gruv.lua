@@ -27,6 +27,7 @@ package.loaded['deadly-gruv.languages.python'] = nil;
 package.loaded['deadly-gruv.plugins'] = nil;
 package.loaded['deadly-gruv.plugins.treesitter'] = nil;
 package.loaded['deadly-gruv.plugins.bufferline'] = nil;
+package.loaded['deadly-gruv.plugins.telescope'] = nil;
 
 
 
