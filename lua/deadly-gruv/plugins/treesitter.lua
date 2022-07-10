@@ -62,9 +62,9 @@ local treesitter = lush(function()
     -- TSStringEscape       { } , -- Escape characters within a string: `\n`, `\t`, etc.
     -- TSStringSpecial      { } , -- Strings with special meaning that don't fit into the previous categories.
     -- TSSymbol             { } , -- Identifiers referring to symbols or atoms.
-    -- TSTag                { } , -- Tags like HTML tag names.
-    -- TSTagAttribute       { } , -- HTML tag attributes.
-    -- TSTagDelimiter       { } , -- Tag delimiters like `<` `>` `/`.
+    -- TSTag                {} , -- Tags like HTML tag names.
+    TSTagAttribute       { fg = sp.secondary[2].lighten(1*delta).desaturate(1*delta) } , -- HTML tag attributes.
+    TSTagDelimiter       { fg = mc.Punctuation[1] } , -- Tag delimiters like `<` `>` `/`.
     -- TSText               { } , -- Non-structured text. Like text in a markup language.
     -- TSStrong             { } , -- Text to be represented in bold.
     -- TSEmphasis           { } , -- Text to be represented with emphasis.
@@ -82,6 +82,17 @@ local treesitter = lush(function()
     -- TSDanger             { } , -- Text representation of a danger note.
     TSType               { fg = mc.Annotations[1] } , -- Type (and class) definitions and annotations.
     TSTypeBuiltin        { fg = mc.Annotations.Builtin, gui = 'italic' } , -- Built-in types: `i32` in Rust.
+
+    TSClassBuiltin({ fg = mc.Symbols.Builtin[1] }),
+    TSClassBuiltinFundamental({ TSClassBuiltin }), -- Classes such as Function, Object.
+    TSClassBuiltinError({ TSClassBuiltin }), -- Classes such as Error, TypeError.
+    TSClassBuiltinNumberOrDate({ TSClassBuiltin }), -- Classes such as Date, Math.
+    TSClassBuiltinTextProcessing({ TSClassBuiltin }), -- RegExp and String.
+    TSClassBuiltinIndexedCollection({ TSClassBuiltin }), -- Array and it's variations.
+    TSClassBuiltinKeyedCollection({ TSClassBuiltin }), -- Set, Map, WeakSet, WeakMap.
+    TSClassBuiltinStructuredData({ TSClassBuiltin }), -- Classes used for serialization such JSON, ArrayBuffer.
+    TSClassBuiltinControlAbstraction({ TSClassBuiltin }), -- Classes such as Promise, Generator.
+    TSClassBuiltinReflection({ TSClassBuiltin }), -- Reflect and Proxy.
   }
 end)
 

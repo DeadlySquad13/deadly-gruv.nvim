@@ -70,7 +70,7 @@ local semantic_palette = {
   emphasizing = {
     cp.gray[5],
     cp.white.tan,
-    cp.red.engine,
+    cp.hj
   },
 
   vague = cp.gray[5],

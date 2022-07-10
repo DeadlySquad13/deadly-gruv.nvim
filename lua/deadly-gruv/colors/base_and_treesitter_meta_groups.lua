@@ -1,9 +1,19 @@
-local hsl = require('lush.hsl')
+local hsl = require("lush.hsl")
 
-local delta = require('deadly-gruv.constants').delta;
+local delta = require("deadly-gruv.constants").delta
 
-local sp = require('deadly-gruv.colors.semantic_palette');
-local ch = require('deadly-gruv.colors.color_harmonies');
+local cp = require("deadly-gruv.colors.color_palette")
+local sp = require("deadly-gruv.colors.semantic_palette")
+local ch = require("deadly-gruv.colors.color_harmonies")
+
+local DEFAULT_ANGLE = 90
+
+local function rotateInAngle(multiple, angle)
+  angle = angle or DEFAULT_ANGLE
+  return (55 * multiple) % angle
+end
+
+local base_bracket_color = sp.contrasting[1].darken(2*delta).desaturate(7*delta).rotate(-DEFAULT_ANGLE / 2)
 
 -- This table helps to organize many-to-many connections of semantic_palette
 --   and highlight groups.
@@ -17,7 +27,7 @@ local base_and_treesitter_meta_groups = {
     sp.contrasting[1],
   },
 
-  -- Class Symbols: classes, methods, constructors, class definitions, fields. 
+  -- Class Symbols: classes, methods, constructors, class definitions, fields.
   ClassSymbols = {
     sp.error,
     sp.contrasting[4],
@@ -27,7 +37,7 @@ local base_and_treesitter_meta_groups = {
   -- Symbols: functions, variables, constants... Also for UI text.
   Symbols = {
     sp.informational[1],
-    hsl('#82762F').darken(2*delta).saturate(5*delta),
+    hsl("#82762F").darken(2 * delta).saturate(5 * delta),
     --sp.informational[12].darken(5*delta).desaturate(2*delta),
     sp.informational[6],
     sp.informational[10],
@@ -37,11 +47,10 @@ local base_and_treesitter_meta_groups = {
     sp.secondary[5],
 
     Builtin = {
+      sp.secondary[5].desaturate(3 * delta).lighten(3 * delta),
       -- sp.secondary[5].mix(sp.informational[10], 40).lighten(delta),
-      sp.secondary[5].desaturate(3*delta).lighten(3*delta),
-    }
+    },
   },
-
 
   -- Important flow control statements (return).
   ImportantFlowControlStatements = {
@@ -53,7 +62,7 @@ local base_and_treesitter_meta_groups = {
   -- Annotations, data types, ...
   Annotations = {
     sp.secondary[3],
-    Builtin = sp.secondary[3].desaturate(5*delta).darken(3*delta),
+    Builtin = sp.secondary[3].desaturate(5 * delta).darken(3 * delta),
   },
 
   -- Constant values (Strings, Numbers...).
@@ -61,11 +70,11 @@ local base_and_treesitter_meta_groups = {
     sp.subtle[2],
     sp.subtle[4],
     sp.subtle[3],
-    sp.subtle[4].darken(3*delta),
+    sp.subtle[4].darken(3 * delta),
   },
 
   Operators = {
-    sp.subtle[7].lighten(3*delta).desaturate(3*delta),
+    sp.subtle[7].lighten(3 * delta).desaturate(3 * delta),
   },
   -- Includes, imports, macroses...
   MetaStatements = {
@@ -88,18 +97,18 @@ local base_and_treesitter_meta_groups = {
   Ui = {
     Bufferline = {
       Background = {
-        ch.monochromatics[3]
+        ch.monochromatics[3],
       },
       Selected = {
         fg = sp.informational[1],
       },
       Visible = {
         fg = sp.informational[6],
-        bg = ch.monochromatics[2].lighten(5*delta).saturate(3*delta),
+        bg = ch.monochromatics[2].lighten(5 * delta).saturate(3 * delta),
       },
       Inactive = {
         fg = sp.informational[1],
-        bg = ch.monochromatics[2].darken(delta)
+        bg = ch.monochromatics[2].darken(delta),
       },
     },
 
@@ -111,10 +120,18 @@ local base_and_treesitter_meta_groups = {
   Background = sp.neutral,
 
   Punctuation = {
+    Brackets = {
+      base_bracket_color,
+      base_bracket_color.rotate(rotateInAngle(1)),
+      base_bracket_color.rotate(rotateInAngle(2)),
+      base_bracket_color.rotate(rotateInAngle(3)),
+      base_bracket_color.rotate(rotateInAngle(4)),
+      base_bracket_color.rotate(rotateInAngle(5)),
+      base_bracket_color.rotate(rotateInAngle(6)),
+    },
     sp.inconspicious[1],
     sp.inconspicious[2],
-  }
+  },
 }
 
-return base_and_treesitter_meta_groups;
-
+return base_and_treesitter_meta_groups

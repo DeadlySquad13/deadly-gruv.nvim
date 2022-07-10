@@ -18,16 +18,6 @@ local M = lush(function()
     typescriptTSKeywordExport({ treesitter.TSInclude }),
     jsdocTSKeyword({ fg = base.Comment.fg.mix(treesitter.TSInclude.fg, 70), gui = "italic" }),
     typescriptTSVariableBuiltin({ fg = treesitter.TSVariableBuiltin.fg, gui = "italic" }),
-    typescriptTSClassBuiltin({ fg = mc.Symbols.Builtin[1] }),
-    typescriptTSClassBuiltinFundamental({ typescriptTSClassBuiltin }), -- Classes such as Function, Object.
-    typescriptTSClassBuiltinError({ typescriptTSClassBuiltin }), -- Classes such as Error, TypeError.
-    typescriptTSClassBuiltinNumberOrDate({ typescriptTSClassBuiltin }), -- Classes such as Date, Math.
-    typescriptTSClassBuiltinTextProcessing({ typescriptTSClassBuiltin }), -- RegExp and String.
-    typescriptTSClassBuiltinIndexedCollection({ typescriptTSClassBuiltin }), -- Array and it's variations.
-    typescriptTSClassBuiltinKeyedCollection({ typescriptTSClassBuiltin }), -- Set, Map, WeakSet, WeakMap.
-    typescriptTSClassBuiltinStructuredData({ typescriptTSClassBuiltin }), -- Classes used for serialization such JSON, ArrayBuffer.
-    typescriptTSClassBuiltinControlAbstraction({ typescriptTSClassBuiltin }), -- Classes such as Promise, Generator.
-    typescriptTSClassBuiltinReflection({ typescriptTSClassBuiltin }), -- Reflect and Proxy.
     -- typescriptTSKeywordReturn({ treesitter.TSKeywordReturn }),
     -- typescriptReserved({ base.ApprenticeAqua }),
     -- typescriptLabel({ base.ApprenticeAqua }),
