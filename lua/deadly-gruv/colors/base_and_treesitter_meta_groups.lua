@@ -52,6 +52,17 @@ local base_and_treesitter_meta_groups = {
     },
   },
 
+  ---@see [Css Rule Order](https://9elements.com/css-rule-order/).
+  ---No clipping in vim by default.
+  CssProps = {
+    PositionAndLayout = sp.secondary[1],
+    DisplayAndVisibility = sp.secondary[2],
+    Animation = sp.secondary[3],
+    BoxModel = sp.secondary[4],
+    Background = sp.secondary[5],
+    Typography = sp.informational[11],
+  },
+
   -- Important flow control statements (return).
   ImportantFlowControlStatements = {
     sp.secondary[1],
