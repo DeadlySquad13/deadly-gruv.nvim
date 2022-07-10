@@ -35,20 +35,33 @@ local base_and_treesitter_meta_groups = {
     sp.informational[11],
     sp.secondary[4],
     sp.secondary[5],
+
+    Builtin = {
+      -- sp.secondary[5].mix(sp.informational[10], 40).lighten(delta),
+      sp.secondary[5].desaturate(3*delta).lighten(3*delta),
+    }
   },
 
+
   -- Important flow control statements (return).
-  ImportantFlowControlStatements = sp.secondary[1],
+  ImportantFlowControlStatements = {
+    sp.secondary[1],
+    Exceptions = sp.secondary[5],
+  },
   -- Control flow statements (for, if, ...).
   FlowControlStatements = sp.secondary[2],
   -- Annotations, data types, ...
-  Annotations = sp.secondary[3],
+  Annotations = {
+    sp.secondary[3],
+    Builtin = sp.secondary[3].desaturate(5*delta).darken(3*delta),
+  },
 
   -- Constant values (Strings, Numbers...).
   ConstantValues = {
     sp.subtle[2],
     sp.subtle[4],
     sp.subtle[3],
+    sp.subtle[4].darken(3*delta),
   },
 
   Operators = {

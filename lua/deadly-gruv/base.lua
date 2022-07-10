@@ -113,7 +113,7 @@ local M = lush(function()
      --pythonAttribute { fg = c.error }, -- (*) Any statement
 
     -- Exception      { }, --   try, catch, throw
-    Keyword        { fg = mc.ImportantFlowControlStatements, gui ='italic' }, --   any other keyword (return).
+     Keyword        { fg = mc.ImportantFlowControlStatements[1], gui ='italic' }, --   any other keyword (return).
     -- Label          { }, --   case, default, etc.
      Conditional    { fg = mc.FlowControlStatements, gui = 'italic' }, --   if, then, else, endif, switch, etc.
      Repeat         { fg = mc.FlowControlStatements, gui = 'italic' }, --   for, do, while, etc.

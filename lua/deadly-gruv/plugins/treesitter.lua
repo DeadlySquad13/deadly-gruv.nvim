@@ -6,11 +6,12 @@ local lush = require('lush');
 local colors = require('deadly-gruv.colors');
 local sp = colors.sp;
 local mc = colors.mc;
+local delta = require('deadly-gruv.constants').delta
 
 local base = require('deadly-gruv.base');
 
 local treesitter = lush(function()
-return {
+  return {
     -- Clases.
      TSConstructor        { fg = mc.ClassSymbols[1] } , -- Constructor calls and definitions: `{}` in Lua, Java constructors, python (pd.Dataframe({column: col}))
 
@@ -28,20 +29,21 @@ return {
     -- TSComment            { } , -- Line comments and block comments.
     -- TSConditional        { } , -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
     -- TSConstant           { } , -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
-     TSConstBuiltin       { fg = mc.ConstantValues[1], gui = 'nocombine' } , -- Built-in constant values: `nil` in Lua.
+     TSConstBuiltin       { fg = mc.ConstantValues[4], gui = 'nocombine' } , -- Built-in constant values: `nil` in Lua.
     -- TSConstMacro         { } , -- Constants defined by macros: `NULL` in sp.
     -- TSDebug              { } , -- Debugging statements.
     -- TSDefine             { } , -- Preprocessor #define statements.
     -- TSError              { } , -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
-    -- TSException          { } , -- Exception related keywords: `try`, `except`, `finally` in Python.
+     TSException          { fg = mc.ImportantFlowControlStatements.Exceptions } , -- Exception related keywords: `try`, `except`, `finally` in Python.
     -- TSFloat              { } , -- Floating-point number literals.
-    -- TSFunction           { } , -- Function calls and definitions.
+     TSFunction           { base.Function } , -- Function calls and definitions.
     -- TSFuncMacro          { } , -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-     TSInclude            { fg = mc.MetaStatements[1] } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
-     TSKeyword            { fg = mc.ImportantFlowControlStatements } , -- Keywords that don't fit into other categories.
+     TSInclude            { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
+     TSKeyword            { fg = mc.FlowControlStatements } , -- Keywords that don't fit into other categories.
      TSKeywordFunction    { fg = mc.DeclarationKeywords[1] } , -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
      TSKeywordOperator    { fg = mc.Operators[1] } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in sp.
      TSKeywordReturn      { base.Keyword } , -- Keywords like `return` and `yield`.
+     TSKeywordDeclaration { fg = mc.DeclarationKeywords[1] } , -- Keywords like `local` in lua, `const` and `let` in ts.
     -- TSLabel              { } , -- GOTO labels: `label:` in sp, and `::label::` in Lua.
     -- TSNamespace          { } , -- Identifiers referring to modules and namespaces.
     -- TSNone               { } , -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
@@ -49,7 +51,7 @@ return {
     -- TSOperator           { } , -- Binary or unary operators: `+`, and also `->` and `*` in sp.
     -- TSParameterReference { } , -- References to parameters of a function.
     -- TSPreProc            { } , -- Preprocessor #if, #else, #endif, etc.
-    -- TSProperty           { } , -- Same as `TSField`.
+    TSProperty           { TSField } , -- Same as `TSField`.
      TSPunctDelimiter     { fg = sp.vague } , -- Punctuation delimiters: Periods, commas, semicolons, etc.
     -- TSPunctBracket       { } , -- Brackets, braces, parentheses, etc.
     -- TSPunctSpecial       { } , -- Special punctuation that doesn't fit into the previous categories.
@@ -78,9 +80,8 @@ return {
     -- TSNote               { } , -- Text representation of an informational note.
      --TSWarning            { fg = sp.error } , -- Text representation of a warning note.
     -- TSDanger             { } , -- Text representation of a danger note.
-    -- TSType               { } , -- Type (and class) definitions and annotations.
-    -- TSTypeBuiltin        { } , -- Built-in types: `i32` in Rust.
-    -- TSVariableBuiltin    { } , -- Variable names defined by the language: `this` or `self` in Javascript.
+    TSType               { fg = mc.Annotations[1] } , -- Type (and class) definitions and annotations.
+    TSTypeBuiltin        { fg = mc.Annotations.Builtin, gui = 'italic' } , -- Built-in types: `i32` in Rust.
   }
 end)
 

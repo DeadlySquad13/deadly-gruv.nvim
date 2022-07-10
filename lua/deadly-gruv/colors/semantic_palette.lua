@@ -38,6 +38,7 @@ local semantic_palette = {
     cp.orange.roman_coffee,
     cp.orange.metallic,
     cp.purple.trendy_pink,
+    cp.red.crimsontest.mix(cp.purple.trendy_pink, 50),
   },
 
   --success = cp.,
@@ -69,6 +70,7 @@ local semantic_palette = {
   emphasizing = {
     cp.gray[5],
     cp.white.tan,
+    cp.red.engine,
   },
 
   vague = cp.gray[5],
