@@ -17,19 +17,39 @@ vim.g.colors_name = 'deadly-gruv'
 package.loaded['deadly-gruv'] = nil;
 package.loaded['deadly-gruv.base'] = nil;
 package.loaded['deadly-gruv.colors'] = nil;
+package.loaded['deadly-gruv.colors.color_palette'] = nil;
+package.loaded['deadly-gruv.colors.semantic_palette'] = nil;
+package.loaded['deadly-gruv.colors.base_and_treesitter_meta_groups'] = nil;
+package.loaded['deadly-gruv.colors.color_harmonies'] = nil;
+
+-- Meta groups.
+package.loaded['deadly-gruv.meta_groups'] = nil;
+package.loaded['deadly-gruv.meta_groups.base_and_treesitter'] = nil;
 
 -- Languages.
 package.loaded['deadly-gruv.languages'] = nil;
+
 package.loaded['deadly-gruv.languages.json'] = nil;
+
 package.loaded['deadly-gruv.languages.python'] = nil;
+
+package.loaded['deadly-gruv.languages.lua'] = nil;
+
+package.loaded['deadly-gruv.languages.css'] = nil;
+package.loaded['deadly-gruv.languages.html'] = nil;
+package.loaded['deadly-gruv.languages.typescript'] = nil;
+package.loaded['deadly-gruv.languages.typescriptreact'] = nil;
+
+package.loaded['deadly-gruv.languages.markdown'] = nil;
 
 -- Plugins.
 package.loaded['deadly-gruv.plugins'] = nil;
 package.loaded['deadly-gruv.plugins.treesitter'] = nil;
 package.loaded['deadly-gruv.plugins.bufferline'] = nil;
 package.loaded['deadly-gruv.plugins.telescope'] = nil;
-
-
+package.loaded['deadly-gruv.plugins.dashboard'] = nil;
+package.loaded['deadly-gruv.plugins.nvim_ts_rainbow'] = nil;
+package.loaded['deadly-gruv.plugins.quick_scope'] = nil;
 
 -- include our theme file and pass it to lush to apply
 require('lush')(require('deadly-gruv'))

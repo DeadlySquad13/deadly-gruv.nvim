@@ -3,9 +3,20 @@ local delta = require('deadly-gruv.constants').delta;
 
 -- Semantic colors.
 local semantic_palette = {
+  -- It's easier to match contrasting colors in pairs. Main color is the color
+  --   that contrasts the most with the environment.
   highly_contrasting = {
-    cp.blue.teal,
-    cp.purple.xyidio,
+    {
+      complementary = cp.purple.xyidio,
+      main = cp.green.verdun,
+    },
+    {
+      complementary = cp.purple.xyidio,
+      main = cp.blue.teal,
+    },
+    {
+      main = cp.red.crimson,
+    }
   },
 
   contrasting = {
@@ -38,6 +49,7 @@ local semantic_palette = {
     cp.orange.roman_coffee,
     cp.orange.metallic,
     cp.purple.trendy_pink,
+    cp.red.crimsontest.mix(cp.purple.trendy_pink, 50),
   },
 
   --success = cp.,
@@ -69,6 +81,7 @@ local semantic_palette = {
   emphasizing = {
     cp.gray[5],
     cp.white.tan,
+    cp.hj
   },
 
   vague = cp.gray[5],

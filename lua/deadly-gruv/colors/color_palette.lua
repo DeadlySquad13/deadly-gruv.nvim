@@ -59,7 +59,7 @@ local color_palette = {
   orange = {
     rust = hsl(19, 97, 35),
     roman_coffee = hsl(19, 34, 48),
-    metallic = hsl(24, 88, 45),
+    metallic = hsl(40, 88, 39),
     pumpkin = hsl(27, 99, 55),
     raw_umber = hsl(40, 88, 33),
   },
