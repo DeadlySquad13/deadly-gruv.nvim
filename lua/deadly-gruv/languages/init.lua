@@ -1,21 +1,19 @@
 local lush = require('lush')
 
-local json = require('deadly-gruv.languages.json');
-local python = require('deadly-gruv.languages.python');
-local css = require('deadly-gruv.languages.css');
-local lua = require('deadly-gruv.languages.lua');
-local html = require('deadly-gruv.languages.html');
-local typescript = require('deadly-gruv.languages.typescript');
-local typescriptreact = require('deadly-gruv.languages.typescriptreact');
+local languages = {
+  'json',
+  'python',
+  'css',
+  'lua',
+  'html',
+  'typescript',
+  'typescriptreact',
+  'markdown',
+}
 
-local languages = lush.merge({
-  json,
-  python,
-  css,
-  lua,
-  html,
-  typescript,
-  typescriptreact
-});
+local utils = require('deadly-gruv.utils')
+local to_list, load_modules = utils.to_list, utils.load_modules
 
-return languages;
+local languages_theme = lush.merge(to_list(load_modules('deadly-gruv.languages', languages)));
+
+return languages_theme;

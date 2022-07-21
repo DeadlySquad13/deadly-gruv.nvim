@@ -2,7 +2,6 @@ local hsl = require("lush.hsl")
 
 local delta = require("deadly-gruv.constants").delta
 
-local cp = require("deadly-gruv.colors.color_palette")
 local sp = require("deadly-gruv.colors.semantic_palette")
 local ch = require("deadly-gruv.colors.color_harmonies")
 
@@ -14,13 +13,12 @@ local function rotateInAngle(multiple, angle)
 end
 
 local base_bracket_color = sp.contrasting[1].darken(2*delta).desaturate(7*delta).rotate(-DEFAULT_ANGLE / 2)
+-- local base_markdown_header_color = sp.contrasting[1].darken(2*delta).desaturate(7*delta)
+local base_markdown_header_color = sp.highly_contrasting[3].main.rotate(-DEFAULT_ANGLE/4)
 
 -- This table helps to organize many-to-many connections of semantic_palette
 --   and highlight groups.
 local base_and_treesitter_meta_groups = {
-  Selection = {
-    sp.highly_contrasting[1],
-  },
   -- Comments, docs, ...
   Summary = {
     sp.contrasting[2],
@@ -29,7 +27,7 @@ local base_and_treesitter_meta_groups = {
 
   -- Class Symbols: classes, methods, constructors, class definitions, fields.
   ClassSymbols = {
-    sp.error,
+    sp.highly_contrasting[3].main,
     sp.contrasting[4],
     sp.informational[9],
   },
@@ -143,6 +141,16 @@ local base_and_treesitter_meta_groups = {
     sp.inconspicious[1],
     sp.inconspicious[2],
   },
+
+  MarkdownHeaders = {
+    base_markdown_header_color,
+    base_markdown_header_color.rotate(1*DEFAULT_ANGLE / 2),
+    base_markdown_header_color.rotate(2*DEFAULT_ANGLE / 2).darken(delta),
+    base_markdown_header_color.rotate(3*DEFAULT_ANGLE / 2).darken(3*delta).desaturate(3*delta),
+    base_markdown_header_color.rotate(4*DEFAULT_ANGLE / 2),
+    base_markdown_header_color.rotate(5*DEFAULT_ANGLE / 2),
+    base_markdown_header_color.rotate(6*DEFAULT_ANGLE / 2),
+  }
 }
 
 return base_and_treesitter_meta_groups

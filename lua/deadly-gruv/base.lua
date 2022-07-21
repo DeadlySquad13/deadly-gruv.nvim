@@ -2,8 +2,9 @@ local lush = require('lush')
 
 local delta = require('deadly-gruv.constants').delta;
 
-local c = require('deadly-gruv.colors').sp;
+local sp = require('deadly-gruv.colors').sp;
 local mc = require('deadly-gruv.colors').mc;
+local mg = require('deadly-gruv.meta_groups');
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -20,15 +21,14 @@ local M = lush(function()
     --
     -- See :h highlight-groups
     --
-     Normal       { fg = c.informational[1], bg = c.neutral }, -- Normal text
-     NonText      { fg = c.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-     ColorColumn  { bg = c.neutral.darken(1*delta) }, -- Columns set with 'colorcolumn'
-     Conceal      { fg = c.inconspicious[2] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-     Cursor       { bg = c.highly_contrasting[2] }, -- Character under the cursor (during f-find as far as I noticed).
+     Normal       { fg = sp.informational[1], bg = sp.neutral }, -- Normal text
+     NonText      { fg = sp.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+     ColorColumn  { bg = sp.neutral.darken(1*delta) }, -- Columns set with 'colorcolumn'
+     Conceal      { fg = sp.inconspicious[2] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
      lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
      --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
      --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-     CursorLine   { bg = c.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+     CursorLine   { bg = sp.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     -- Directory    { }, -- Directory names (and other special names in listings)
     -- DiffAdd      { }, -- Diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
@@ -40,13 +40,10 @@ local M = lush(function()
     -- ErrorMsg     { }, -- Error messages on the command line
      --VertSplit    { fg = c.error, bg = c.error }, -- Column separating vertically split windows
      Folded       { fg = Normal.fg.lighten(5*delta), bg = Normal.bg.desaturate(3*delta).darken(3*delta) }, -- Line used for closed folds
-     FoldColumn   { fg = c.vague, bg = c.inconspicious1 }, -- 'foldcolumn'
-     SignColumn   { fg = c.vague, bg = Normal.bg }, -- Column where |signs| are displayed
-    -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    -- Substitute   { }, -- |:substitute| replacement text highlighting
-     LineNr       { fg = c.vague }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-     CursorLineNr { fg = c.contrasting[1], bg = c.emphasizing[2] }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-     MatchParen   { fg = mc.Selection[1], gui = 'underline bold' }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+     FoldColumn   { fg = sp.vague, bg = sp.inconspicious1 }, -- 'foldcolumn'
+     SignColumn   { fg = sp.vague, bg = Normal.bg }, -- Column where |signs| are displayed
+     LineNr       { fg = sp.vague }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+     CursorLineNr { fg = sp.contrasting[1], bg = sp.emphasizing[2] }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
@@ -59,9 +56,17 @@ local M = lush(function()
      PmenuThumb   { bg = Pmenu.fg.mix(Pmenu.bg, 90) }, -- Popup menu: Thumb of the scrollbar.
      --Question     { }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-     Search       { fg = Normal.bg.rotate(120).darken(5*delta) }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+
+    -- * Search and selections.
+     Search       { mg.base.dg_Selection }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+     IncSearch    { mg.base.dg_Selected }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+     Substitute   { Search }, -- |:substitute| replacement text highlighting
+     Cursor       { IncSearch }, -- Character under the cursor (during f-find as far as I noticed).
+     MatchParen   { mg.base.dg_Match }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+
+    -- * Spell.
      --SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-     SpellBad     { fg = c.error }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+     SpellBad     { fg = sp.error }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
      --SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
      --SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
      --SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
@@ -74,13 +79,13 @@ local M = lush(function()
      --TabLine      {  fg = c.error, bg = c.error }, -- Tab pages line, not active tab page label
      --TabLineFill  { fg = c.error, bg = c.error }, -- Tab pages line, where there are no labels
      --TabLineSel   {  fg = c.error, bg = c.error }, -- Tab pages line, active tab page label
-     Title        { fg = mc.Symbols[1], gui = 'bold' }, -- Titles for output from ":set all", ":autocmd" etc.
-     Visual       { bg = c.contrasting[3] }, -- Visual mode selection
+     Title        { fg = mc.ClassSymbols[1], gui = 'bold' }, -- Titles for output from ":set all", ":autocmd" etc.
+     Visual       { bg = sp.contrasting[3] }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-     WarningMsg   { fg = c.error }, -- Warning messages
-     Whitespace   { fg = c.inconspicious[1] }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+     WarningMsg   { fg = sp.error }, -- Warning messages
+     Whitespace   { fg = sp.inconspicious[1] }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
      Winseparator { fg = mc.Ui.Borders[1], }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-     WildMenu     { fg = c.inconspicious[1] }, -- Current match in 'wildmenu' completion
+     WildMenu     { fg = sp.inconspicious[1] }, -- Current match in 'wildmenu' completion
 
     -- Common vim syntax groups used for all kinds of code and markup.
     -- Commented-out groups should chain up to their preferred (*) group
@@ -102,14 +107,14 @@ local M = lush(function()
      Number         { fg = mc.ConstantValues[3] }, --   A number constant: 234, 0xff
      Float          { fg = Number.fg.darken(1) }, --   A floating point constant: 2.3e10
 
-     Character      { fg = c.inconspicious[1] }, --   A character constant: 'c', '\n'
+     Character      { fg = sp.inconspicious[1] }, --   A character constant: 'c', '\n'
 
     -- * Symbols.
      Function       { fg = mc.Symbols[2], gui = 'bold' }, --   Function name (also: methods for classes)
      Identifier     { fg = mc.Symbols[1] }, -- (*) Any variable name
      Constant       { fg = mc.Symbols[1] }, -- (*) Any constant
 
-     Statement      { fg = c.informational[1] }, -- (*) Any statement
+     Statement      { fg = sp.informational[1] }, -- (*) Any statement
      --pythonAttribute { fg = c.error }, -- (*) Any statement
 
     -- Exception      { }, --   try, catch, throw
@@ -127,11 +132,11 @@ local M = lush(function()
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
      Type           { fg = mc.ClassSymbols[1], gui = 'bold' }, -- (*) int, long, char, etc.
-     StorageClass   { fg = c.highly_contrasting[1] }, --   static, register, volatile, etc.
-     Structure      { fg = c.highly_contrasting[1] }, --   struct, union, enum, etc.
-     Typedef        { fg = c.highly_contrasting[1] }, --   A typedef
+     StorageClass   { fg = sp.highly_contrasting[1].fg }, --   static, register, volatile, etc.
+     Structure      { fg = sp.highly_contrasting[1].fg }, --   struct, union, enum, etc.
+     Typedef        { fg = sp.highly_contrasting[1].fg }, --   A typedef
 
-    -- Special        { }, -- (*) Any special symbol
+    Special        { fg = mc.Punctuation[2] }, -- (*) Any special symbol, for example, markdownDelimiter (###).
     -- SpecialChar    { }, --   Special character in a constant
     -- Tag            { }, --   You can use CTRL-] on this
     -- Delimiter      { }, --   Character that needs attention

@@ -7,6 +7,8 @@ local mc = colors.mc;
 local sp = colors.sp;
 local cp = colors.cp;
 
+local mg = require('deadly-gruv.meta_groups')
+
 local M = lush(function()
   return {
     --TelescopeSelection { fg = sp.error, bg = sp.error },
@@ -17,7 +19,7 @@ local M = lush(function()
     --TelescopePromptBorder {},
     --TelescopeResultsBorder {},
     --TelescopePreviewBorder {},
-    --TelescopeMatching {},
+    TelescopeMatching { fg = mg.base.dg_Match.fg.darken(4*delta), bg = mg.base.dg_Match.bg, gui = mg.base.dg_Match.gui },
     --TelescopePromptPrefix { fg = sp.error },
     --TelescopePromptCounter { fg = sp.error },
     --TelescopeResultsComment { bg = sp.error },

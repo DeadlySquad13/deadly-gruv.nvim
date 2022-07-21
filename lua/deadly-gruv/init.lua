@@ -1,15 +1,18 @@
-local lush = require('lush')
+local lush = require("lush")
 
-local base = require('deadly-gruv.base')
-local languages = require('deadly-gruv.languages');
-local plugins = require('deadly-gruv.plugins');
+local utils = require('deadly-gruv.utils')
+local to_list, load_modules = utils.to_list, utils.load_modules
 
-local theme = lush.merge({
-  base,
-  languages,
-  plugins,
-});
+local meta_groups = to_list(require("deadly-gruv.meta_groups"))
 
-return theme;
+local modules = {
+  "base",
+  "languages",
+  "plugins",
+}
 
+local syntax_groups = to_list(load_modules("deadly-gruv", modules))
 
+local theme = lush.merge(vim.list_extend(meta_groups, syntax_groups))
+
+return theme
