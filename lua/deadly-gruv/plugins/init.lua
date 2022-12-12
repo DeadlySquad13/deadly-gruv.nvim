@@ -9,7 +9,8 @@ local plugins = {
   'telescope',
   'dashboard',
   'nvim_ts_rainbow',
-  'quick_scope'
+  'quick_scope',
+  'illuminate',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));
