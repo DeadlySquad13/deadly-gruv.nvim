@@ -10,12 +10,13 @@ local delta = require('deadly-gruv.constants').delta
 
 local base = require('deadly-gruv.base');
 
-local treesitter = lush(function()
+local treesitter = lush(function(injected_functions)
+  local sym = injected_functions.sym
   return {
     -- Clases.
-     TSConstructor        { fg = mc.ClassSymbols[1] } , -- Constructor calls and definitions: `{}` in Lua, Java constructors, python (pd.Dataframe({column: col}))
+     sym '@constructor'        { fg = mc.ClassSymbols[1] } , -- Constructor calls and definitions: `{}` in Lua, Java constructors, python (pd.Dataframe({column: col}))
 
-     TSMethod             { fg = mc.ClassSymbols[3], gui = 'bold' }, -- Method calls and definitions.
+     sym '@method'             { fg = mc.ClassSymbols[3], gui = 'bold' }, -- Method calls and definitions.
      TSParameter          { fg = mc.Symbols[3], gui = 'nocombine' } , -- Parameters of a function.
      TSField              { fg = mc.Symbols[4] } , -- Object and struct fields.
      TSVariable           { fg = mc.Symbols[5], gui='nocombine' } , -- Variable names that don't fit into other categories.
