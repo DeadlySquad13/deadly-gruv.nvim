@@ -66,7 +66,7 @@ local M = lush(function()
 
     -- * Spell.
      --SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-     SpellBad     { fg = sp.error }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+    SpellBad     { gui = 'underdotted', guisp = sp.error }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
      --SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
      --SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
      --SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
@@ -139,12 +139,12 @@ local M = lush(function()
     Special        { fg = mc.Punctuation[2] }, -- (*) Any special symbol, for example, markdownDelimiter (###).
     -- SpecialChar    { }, --   Special character in a constant
     -- Tag            { }, --   You can use CTRL-] on this
-    -- Delimiter      { }, --   Character that needs attention
+    Delimiter      { fg = sp.vague }, --   Character that needs attention but shoud be barely noticible.
     -- Debug          { }, --   Debugging statements
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    -- Error          { }, -- Any erroneous construct
+    Error          { gui = 'undercurl', guisp = '#aa0000' }, -- Any erroneous construct
     -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client and diagnostic system. Some
@@ -153,9 +153,9 @@ local M = lush(function()
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    -- LspReferenceText            { } , -- Used for highlighting "text" references
-    -- LspReferenceRead            { } , -- Used for highlighting "read" references
-    -- LspReferenceWrite           { } , -- Used for highlighting "write" references
+    LspReferenceText            { bg = Visual.bg.lighten(3*delta), gui = 'underline' } , -- Used for highlighting "text" references (no information is available).
+    LspReferenceRead            { LspReferenceText } , -- Used for highlighting "read" references (readonly?).
+    LspReferenceWrite           { LspReferenceText } , -- Used for highlighting "write" references
     -- LspCodeLens                 { } , -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { } , -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { } , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.

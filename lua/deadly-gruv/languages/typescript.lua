@@ -8,16 +8,17 @@ local base = require("deadly-gruv.base")
 
 local M = lush(function()
   return {
-    typescriptTSFunction({ treesitter.TSFunction }),
-    typescriptTSFunctionDeclaration({
-      fg = treesitter.TSFunction.fg.rotate(delta),
-      bg = treesitter.TSFunction.bg,
-      gui = treesitter.TSFunction.gui,
-    }),
+    -- typescriptTSFunction({ treesitter.TSFunction }),
+    -- typescriptTSFunctionDeclaration({
+    --   fg = treesitter.TSFunction.fg.rotate(delta),
+    --   bg = treesitter.TSFunction.bg,
+    --   gui = treesitter.TSFunction.gui,
+    -- }),
+    -- typescriptTSKeywordExport({ treesitter.TSInclude }),
+    -- jsdocTSKeyword({ fg = base.Comment.fg.mix(treesitter.TSInclude.fg, 70), gui = "italic" }),
+    -- typescriptTSVariableBuiltin({ fg = treesitter.TSVariableBuiltin.fg, gui = "italic" }),
+
     -- typescriptTSKeyword({ treesitter.TSInclude }),
-    typescriptTSKeywordExport({ treesitter.TSInclude }),
-    jsdocTSKeyword({ fg = base.Comment.fg.mix(treesitter.TSInclude.fg, 70), gui = "italic" }),
-    typescriptTSVariableBuiltin({ fg = treesitter.TSVariableBuiltin.fg, gui = "italic" }),
     -- typescriptTSKeywordReturn({ treesitter.TSKeywordReturn }),
     -- typescriptReserved({ base.ApprenticeAqua }),
     -- typescriptLabel({ base.ApprenticeAqua }),
