@@ -3,21 +3,25 @@ local lush = require("lush")
 local delta = require("deadly-gruv.constants").delta
 local mc = require("deadly-gruv.colors").mc
 local sp = require("deadly-gruv.colors").sp
+local base = require('deadly-gruv.base')
 local treesitter = require("deadly-gruv.plugins.treesitter")
 
-local M = lush(function()
+local M = lush(function(injected_functions)
+  local sym = injected_functions.sym
+
   return {
     -- cssTSSelectorClass { fg = sp.error }, -- Class selectors.
     -- cssTSSelectorId { fg =sp.error }, -- Id selectors.
-    cssTSPunctDelimiterPseudoElement({ fg = sp.contrasting[1], gui = "bold" }),
-    cssTSType({}), -- Other selectors?.
-    cssTSTypeBuiltin({ fg = sp.contrasting[1] }), -- Selectors like h3, html and &.
+    -- cssTSPunctDelimiterPseudoElement({ fg = sp.contrasting[1], gui = "bold" }),
+    -- cssTSType({}), -- Other selectors?.
+    -- cssTSTypeBuiltin({ fg = sp.contrasting[1] }), -- Selectors like h3, html and &.
+
     cssBraces({ gui = "none" }),
 
-    cssTSKeyword({ fg = sp.contrasting[1] }), -- @media, @keyframes, from, to and so on.
-    cssTSFunction({}),
+    -- cssTSKeyword({ fg = sp.contrasting[1] }), -- @media, @keyframes, from, to and so on.
+    -- cssTSFunction({}),
 
-    cssTSPunctDelimiter({ fg = mc.Punctuation[1] }),
+    -- cssTSPunctDelimiter({ fg = mc.Punctuation[1] }),
 
     cssClassName({ fg = sp.error }),
     cssClassNameDot({ fg = cssClassName.fg.mix(mc.Background, 60), gui = "nocombine" }),
@@ -25,7 +29,7 @@ local M = lush(function()
     cssIdentifier({ fg = sp.contrasting[1] }),
 
     cssTagName({ fg = "#00ee00" }),
-    cssNoise({ treesitter.TSPunctDelimiter }),
+    cssNoise({ base.Delimiter }),
     -- # Props.
     cssProp({ fg = mc.Symbols[4] }),
 
