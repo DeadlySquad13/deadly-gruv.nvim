@@ -14,7 +14,7 @@ local bf = mc.Ui.Bufferline;
 -- @see{`:h vim.diagnostic`} to understand what are the diagnostics.
 local M = lush(function()
   return {
-    -- Remember that it is just symbols, so fg is what actually a separator.
+    -- Remember that it is just symbols, so fg is what actually a separator has.
     BufferLineFill { fg = bf.Inactive.bg, bg = bf.Background[1], gui = 'bold' }, -- Unused by tabs area.
 
     BufferLineSeparatorSelected { fg = bf.Background[1] },
