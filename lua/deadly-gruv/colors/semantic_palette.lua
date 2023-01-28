@@ -26,6 +26,10 @@ local semantic_palette = {
       complementary = cp.white[1],
       main = cp.purple.studio,
     },
+    {
+      complementary = cp.white[3], -- background.
+      main = cp.red.crimson,
+    },
   },
 
   contrasting = {

@@ -27,7 +27,7 @@ local base_and_treesitter_meta_groups = {
 
   -- Class Symbols: classes, methods, constructors, class definitions, fields.
   ClassSymbols = {
-    sp.highly_contrasting[3].main,
+    sp.highly_contrasting[6].main,
     sp.contrasting[4],
     sp.informational[9],
   },
