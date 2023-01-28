@@ -19,6 +19,18 @@ local meta_groups = lush(function()
     dg_Selected({ fg = sp.highly_contrasting[2].complementary, bg = sp.highly_contrasting[2].main }),
     ---@exaple Matching parentheses.
     dg_Match({ fg = sp.highly_contrasting[2].main, gui = "underline bold" }),
+
+    ---@example LeapMatch (instant match after pressing one key). It should be
+    -- more contrasting than dg_Match as it can be anywhere in the window, far
+    -- from cursor.
+    dg_GlobalMatch({ fg = sp.highly_contrasting[3].main, gui = "underline bold" }),
+
+    ---@example LabelPrimary of a leap. It labels characters that user has to press to jump.
+    dg_LabelPrimary({ fg = sp.highly_contrasting[4].complementary, bg = sp.highly_contrasting[4].main, gui = 'bold' }),
+    ---@example LabelSecondary of a leap. It labels characters in second group that user has to press to jump.
+    dg_LabelSecondary({ fg = sp.highly_contrasting[5].complementary, bg = sp.highly_contrasting[5].main, gui = 'bold' }),
+    -- Not used yet.
+    dg_LabelTertiary({ fg = sp.highly_contrasting[3].complementary, bg = sp.highly_contrasting[3].main, gui = 'bold' }),
   }
 end)
 
