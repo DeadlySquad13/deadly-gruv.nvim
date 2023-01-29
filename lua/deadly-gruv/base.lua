@@ -25,7 +25,6 @@ local M = lush(function()
      NonText      { fg = sp.inconspicious[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
      ColorColumn  { bg = sp.neutral.darken(1*delta) }, -- Columns set with 'colorcolumn'
      Conceal      { fg = sp.inconspicious[2] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-     lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
      --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
      --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
      CursorLine   { bg = sp.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
@@ -58,10 +57,11 @@ local M = lush(function()
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 
     -- * Search and selections.
+     Cursor       { mg.base.dg_Selected }, -- Character under the cursor (during f-find as far as I noticed).
+     lCursor      { mg.base.dg_Pending }, -- Character under the cursor when |language-mapping| is used (see 'guicursor'). Cursor enters it, for example, during search or f/t...
      Search       { mg.base.dg_Selection }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-     IncSearch    { mg.base.dg_Selected }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+     IncSearch    { Cursor }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
      Substitute   { Search }, -- |:substitute| replacement text highlighting
-     Cursor       { IncSearch }, -- Character under the cursor (during f-find as far as I noticed).
      MatchParen   { mg.base.dg_Match }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 
     -- * Spell.

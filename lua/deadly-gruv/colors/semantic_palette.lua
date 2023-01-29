@@ -7,11 +7,11 @@ local semantic_palette = {
   --   that contrasts the most with the environment.
   highly_contrasting = {
     {
-      complementary = cp.purple.xyidio,
+      complementary = cp.white[1],
       main = cp.green.verdun,
     },
     {
-      complementary = cp.purple.xyidio,
+      complementary = cp.white[1],
       main = cp.blue.teal,
     },
     {
@@ -29,6 +29,10 @@ local semantic_palette = {
     {
       complementary = cp.white[3], -- background.
       main = cp.red.crimson,
+    },
+    {
+      complementary = cp.black.black7,
+      main = cp.white[1],
     },
   },
 

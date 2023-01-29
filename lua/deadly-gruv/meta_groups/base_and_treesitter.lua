@@ -20,6 +20,10 @@ local meta_groups = lush(function()
     ---@exaple Matching parentheses.
     dg_Match({ fg = sp.highly_contrasting[2].main, gui = 'underline bold' }),
 
+    -- When |language-mapping| is used (see 'guicursor').
+    ---@exaple lCursor during search, f/t...
+    dg_Pending({ fg = dg_Selected.bg, bg = dg_Selected.fg, gui = dg_Selected.gui }),
+
     ---@example LeapMatch (instant match after pressing one key). It should be
     -- more contrasting than dg_Match as it can be anywhere in the window, far
     -- from cursor.
@@ -35,3 +39,5 @@ local meta_groups = lush(function()
 end)
 
 return meta_groups
+
+
