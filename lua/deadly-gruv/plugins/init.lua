@@ -12,6 +12,7 @@ local plugins = {
   'quick_scope',
   'illuminate',
   'leap',
+  'sj',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));

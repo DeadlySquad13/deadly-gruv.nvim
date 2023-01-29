@@ -1,11 +1,11 @@
-local hsl = require("lush.hsl")
-local lush = require("lush")
+local hsl = require('lush.hsl')
+local lush = require('lush')
 
-local delta = require("deadly-gruv.constants").delta
+local delta = require('deadly-gruv.constants').delta
 
-local cp = require("deadly-gruv.colors.color_palette")
-local sp = require("deadly-gruv.colors.semantic_palette")
-local ch = require("deadly-gruv.colors.color_harmonies")
+local cp = require('deadly-gruv.colors.color_palette')
+local sp = require('deadly-gruv.colors.semantic_palette')
+local ch = require('deadly-gruv.colors.color_harmonies')
 
 -- It was a mistake to make meta groups just a collections of colors, it's way
 -- easier to make them as an instances of lush syntax groups.
@@ -18,12 +18,12 @@ local meta_groups = lush(function()
     ---@exaple If incsearch enabled, currently matched string.
     dg_Selected({ fg = sp.highly_contrasting[2].complementary, bg = sp.highly_contrasting[2].main }),
     ---@exaple Matching parentheses.
-    dg_Match({ fg = sp.highly_contrasting[2].main, gui = "underline bold" }),
+    dg_Match({ fg = sp.highly_contrasting[2].main, gui = 'underline bold' }),
 
     ---@example LeapMatch (instant match after pressing one key). It should be
     -- more contrasting than dg_Match as it can be anywhere in the window, far
     -- from cursor.
-    dg_GlobalMatch({ fg = sp.highly_contrasting[3].main, gui = "underline bold" }),
+    dg_GlobalMatch({ fg = sp.highly_contrasting[3].main, gui = 'underline bold' }),
 
     ---@example LabelPrimary of a leap. It labels characters that user has to press to jump.
     dg_LabelPrimary({ fg = sp.highly_contrasting[4].complementary, bg = sp.highly_contrasting[4].main, gui = 'bold' }),
