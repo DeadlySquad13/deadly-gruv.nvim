@@ -13,6 +13,7 @@ local plugins = {
   'illuminate',
   'leap',
   'sj',
+  'lspsaga',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));
