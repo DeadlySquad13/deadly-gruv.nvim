@@ -69,11 +69,15 @@ local semantic_palette = {
     cp.red.crimsontest.mix(cp.purple.trendy_pink, 50),
   },
 
-  --success = cp.,
-  --info = cp.,
-  --hint = cp.,
-  warning = cp.yellow.philippine_gold,
-  error = cp.red.crimson,
+  -- Highly contrasting.
+  success = cp.green.verdun,
+  error = cp.red.lipstick,
+  -- Contrasting.
+  warning = cp.orange.pumpkin.desaturate(3*delta).darken(3*delta),
+  -- Informational
+  info = cp.blue.sapphire,
+  -- Emphazing or even vague.
+  hint = cp.gray[5],
 
   subtle = {
     cp.white[2],

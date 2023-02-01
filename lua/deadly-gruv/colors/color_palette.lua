@@ -11,6 +11,7 @@ local color_palette = {
     crimsontest = hsl(358, 70, 31),
     engine = hsl(2, 75, 46),
     venetian = hsl(6, 96, 59),
+    lipstick = hsl(0, 100, 33),
   },
 
   green = {
