@@ -48,6 +48,7 @@ local semantic_palette = {
       complementary = cp.white[3],
       main = cp.blue.bismark,
     },
+    brown = cp.orange.brown,
   },
 
   -- Symbols.
@@ -64,6 +65,7 @@ local semantic_palette = {
     cp.blue.sapphire,
     cp.purple.twilight_lavender,
     cp.mustard.acid,
+    blue = hsl(198, 43, 33),
   },
 
   secondary = {
