@@ -18,7 +18,7 @@ local plugins = {
   'neo_tree',
   -- Git.
   'diffview',
-  -- 'neogit',
+  'neogit',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));

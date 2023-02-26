@@ -28,7 +28,6 @@ local M = lush(function()
      --CursorIM     { fg = c.error, bg = c.error}, -- Like Cursor, but used when in IME mode |CursorIM|
      --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
      CursorLine   { bg = sp.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    gitcommitSummary { gui = 'bold' },
     DiffAdd      { bg = sp.emphasizing.green }, -- Diff mode: Added line |diff.txt|
     DiffChange   { bg = sp.emphasizing.light_green }, -- Diff mode: Changed line |diff.txt|
     DiffDelete   { bg = sp.emphasizing.pink }, -- Diff mode: Deleted line |diff.txt|
@@ -80,6 +79,7 @@ local M = lush(function()
      --TabLineFill  { fg = c.error, bg = c.error }, -- Tab pages line, where there are no labels
      --TabLineSel   {  fg = c.error, bg = c.error }, -- Tab pages line, active tab page label
      Title        { fg = sp.contrasting.brown, gui = 'bold' }, -- Titles for output from ":set all", ":autocmd" etc.
+     gitcommitSummary { Title },
      Directory    { fg = sp.informational.blue }, -- Directory names (and other special names in listings)
      Visual       { bg = sp.contrasting[3] }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
