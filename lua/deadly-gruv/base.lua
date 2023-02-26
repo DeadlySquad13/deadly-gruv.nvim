@@ -29,10 +29,10 @@ local M = lush(function()
      --CursorColumn { bg = c.emphasizing}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
      CursorLine   { bg = sp.emphasizing[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     -- Directory    { }, -- Directory names (and other special names in listings)
-    -- DiffAdd      { }, -- Diff mode: Added line |diff.txt|
-    -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
-    -- DiffDelete   { }, -- Diff mode: Deleted line |diff.txt|
-    -- DiffText     { }, -- Diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd      { bg = sp.emphasizing.green }, -- Diff mode: Added line |diff.txt|
+    DiffChange   { bg = sp.emphasizing.light_green }, -- Diff mode: Changed line |diff.txt|
+    DiffDelete   { bg = sp.emphasizing.pink }, -- Diff mode: Deleted line |diff.txt|
+    DiffText     { bg = sp.highly_contrasting[7].main, gui = 'bold' }, -- Diff mode: Changed text within a changed line |diff.txt|
      EndOfBuffer  { NonText }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal

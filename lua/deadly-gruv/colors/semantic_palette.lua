@@ -1,5 +1,6 @@
 local cp = require('deadly-gruv.colors.color_palette');
 local delta = require('deadly-gruv.constants').delta;
+local hsl = require('lush.hsl');
 
 -- Semantic colors.
 local semantic_palette = {
@@ -43,6 +44,10 @@ local semantic_palette = {
     -- background, so it should be quite blend).
     cp.gray.light,
     cp.purple.studio,
+    {
+      complementary = cp.white[3],
+      main = cp.blue.bismark,
+    },
   },
 
   -- Symbols.
@@ -102,7 +107,10 @@ local semantic_palette = {
   emphasizing = {
     cp.gray[5],
     cp.white.tan,
-    cp.hj
+    pink = hsl(14, 95, 83),
+    green = hsl(118, 42, 85),
+    light_green = hsl(68, 38, 84),
+    blue = hsl(198, 60, 80),
   },
 
   vague = cp.gray[5],

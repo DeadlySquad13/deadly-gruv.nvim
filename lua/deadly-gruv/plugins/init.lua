@@ -14,6 +14,7 @@ local plugins = {
   'leap',
   'sj',
   'lspsaga',
+  'syntax_tree_surfer',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));

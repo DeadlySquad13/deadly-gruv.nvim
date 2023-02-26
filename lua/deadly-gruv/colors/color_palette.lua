@@ -37,6 +37,7 @@ local color_palette = {
     deep_cerulean = hsl(199, 100, 38),
     bondi = hsl(188, 96, 36),
     sapphire = hsl(190, 89, 25),
+    bismark = hsl(190, 89, 25),
     jelly_bean = hsl(183, 33, 40),
     morning = hsl(157, 16, 58),
   },
