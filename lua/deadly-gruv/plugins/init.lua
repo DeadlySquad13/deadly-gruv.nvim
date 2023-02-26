@@ -15,8 +15,10 @@ local plugins = {
   'sj',
   'lspsaga',
   'syntax_tree_surfer',
-  'diffview',
   'neo_tree',
+  -- Git.
+  'diffview',
+  -- 'neogit',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));
