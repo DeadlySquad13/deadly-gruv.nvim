@@ -97,6 +97,11 @@ local M = lush(function()
     --BufferLineCloseButtonSelected {  },
     --BufferLineCloseButtonVisible {  },
     --BufferLineCloseButton {  },
+
+    -- # Numbers.
+    -- BufferLineNumberSelected
+    BufferLineNumberVisible { bg = bf.Visible.bg },
+    BufferLineNumbers { bg = bf.Inactive.bg },
   }
 end)
 
