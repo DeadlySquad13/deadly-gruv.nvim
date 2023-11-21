@@ -19,6 +19,7 @@ local plugins = {
   -- Git.
   'diffview',
   'neogit',
+  'indent_blankline',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));
