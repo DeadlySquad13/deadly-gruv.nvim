@@ -86,16 +86,16 @@ local treesitter = lush(function(injected_functions)
     sym'@type'               { fg = mc.Annotations[1] } , -- Type (and class) definitions and annotations.
     sym'@type.builtin'        { fg = mc.Annotations.Builtin, gui = 'italic' } , -- Built-in types: `i32` in Rust.
 
-    -- sym'@classBuiltin'({ fg = mc.Symbols.Builtin[1] }),
-    -- sym'@classBuiltinFundamental'({ sym'@classBuiltin' }), -- Classes such as Function, Object.
-    -- sym'@classBuiltinError'({ sym'@classBuiltin' }), -- Classes such as Error, TypeError.
-    -- sym'@classBuiltinNumberOrDate'({ sym'@classBuiltin' }), -- Classes such as Date, Math.
-    -- sym'@classBuiltinTextProcessing'({ sym'@classBuiltin' }), -- RegExp and String.
-    -- sym'@classBuiltinIndexedCollection'({ sym'@classBuiltin' }), -- Array and it's variations.
-    -- sym'@classBuiltinKeyedCollection'({ sym'@classBuiltin' }), -- Set, Map, WeakSet, WeakMap.
-    -- sym'@classBuiltinStructuredData'({ sym'@classBuiltin' }), -- Classes used for serialization such JSON, ArrayBuffer.
-    -- sym'@classBuiltinControlAbstraction'({ sym'@classBuiltin' }), -- Classes such as Promise, Generator.
-    -- sym'@classBuiltinReflection'({ sym'@classBuiltin' }), -- Reflect and Proxy.
+    sym'@class.builtin'({ fg = mc.Symbols.Builtin[1] }),
+    sym'@class.builtin.fundamental'({ sym'@class.builtin' }), -- Classes such as Function, Object.
+    sym'@class.builtin.error'({ sym'@class.builtin' }), -- Classes such as Error, TypeError.
+    sym'@class.builtin.number_or_date'({ sym'@class.builtin' }), -- Classes such as Date, Math.
+    sym'@class.builtin.text_processing'({ sym'@class.builtin' }), -- RegExp and String.
+    sym'@class.builtin.indexed_collection'({ sym'@class.builtin' }), -- Array and it's variations.
+    sym'@class.builtin.keyed_collection'({ sym'@class.builtin' }), -- Set, Map, WeakSet, WeakMap.
+    sym'@class.builtin.structured_data'({ sym'@class.builtin' }), -- Classes used for serialization such JSON, ArrayBuffer.
+    sym'@class.builtin.control_abstraction'({ sym'@class.builtin' }), -- Classes such as Promise, Generator.
+    sym'@class.builtin.reflection'({ sym'@class.builtin' }), -- Reflect and Proxy.
   }
 end)
 
