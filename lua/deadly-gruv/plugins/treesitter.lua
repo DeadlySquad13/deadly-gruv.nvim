@@ -19,8 +19,9 @@ local treesitter = lush(function(injected_functions)
 
     sym'@method'             { fg = mc.ClassSymbols[3], gui = 'bold' }, -- Method calls and definitions.
     sym'@parameter'          { fg = mc.Symbols[3], gui = 'nocombine' } , -- Parameters of a function.
-    sym'@field'              { fg = mc.Symbols[4] } , -- Object and struct fields.
+    sym'@field'              { fg = mc.Symbols[4] } , -- Object and struct fields (mostly LSP?).
     sym'@variable'           { fg = mc.Symbols[5], gui='nocombine' } , -- Variable names that don't fit into other categories.
+    sym'@variable.member'           { sym'@field' } , -- Object and struct fields.
     sym'@function.builtin'        { fg = mc.Symbols[6], gui='nocombine' } , -- Built-in functions: `print` in Lua.
     sym'@variable.builtin'        { fg = mc.Symbols[7], gui='nocombine' } , -- Built-in functions: `print` in Lua ???.
     --
@@ -31,7 +32,7 @@ local treesitter = lush(function(injected_functions)
     -- sym'@comment'            { } , -- Line comments and block comments.
     -- sym'@conditional'        { } , -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
     -- sym'@constant'           { } , -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
-    sym'@const.builtin'       { fg = mc.ConstantValues[4], gui = 'nocombine' } , -- Built-in constant values: `nil` in Lua.
+    sym'@constant.builtin'       { fg = mc.ConstantValues[4], gui = 'nocombine' } , -- Built-in constant values: `nil` in Lua.
     -- sym'@constMacro'         { } , -- Constants defined by macros: `NULL` in sp.
     -- sym'@debug'              { } , -- Debugging statements.
     -- sym'@define'             { } , -- Preprocessor #define statements.
@@ -40,12 +41,13 @@ local treesitter = lush(function(injected_functions)
     -- sym'@float'              { } , -- Floating-point number literals.
     sym'@function'           { base.Function } , -- Function calls and definitions.
     -- sym'@funcMacro'          { } , -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-    sym'@keyword'            { fg = mc.FlowControlStatements } , -- Keywords that don't fit into other categories.
-    sym'@keyword.function'    { fg = mc.DeclarationKeywords[1] } , -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
+    sym'@keyword'            { fg = mc.FlowControlStatements, gui = 'italic' } , -- Keywords that don't fit into other categories.
+    sym'@keyword.function'    { fg = mc.DeclarationKeywords[1], gui = 'italic' } , -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
     sym'@keyword.operator'    { fg = mc.Operators[1] } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in sp.
     sym'@keyword.return'      { base.Keyword } , -- Keywords like `return` and `yield`.
     sym'@keyword.declaration' { fg = mc.DeclarationKeywords[1] } , -- Keywords like `local` in lua, `const` and `let` in ts.
     sym'@keyword.export'      { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
+    sym'@keyword.import'      { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
     sym'@include'             { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
     -- sym'@label'              { } , -- GOTO labels: `label:` in sp, and `::label::` in Lua.
     -- sym'@namespace'          { } , -- Identifiers referring to modules and namespaces.

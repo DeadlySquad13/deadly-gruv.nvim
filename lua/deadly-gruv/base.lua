@@ -46,9 +46,9 @@ local M = lush(function()
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
-    -- NormalFloat  { }, -- Normal text in floating windows.
+    NormalFloat  { bg = Normal.bg.darken(delta) }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
-     Pmenu        { fg = Normal.fg, bg = Normal.bg.darken(2*delta) }, -- Popup menu: Normal item.
+     Pmenu        { fg = Normal.fg, bg = NormalFloat.bg.darken(delta) }, -- Popup menu: Normal item.
      PmenuSel     { fg = Pmenu.fg.darken(4*delta), bg = Pmenu.bg.darken(4*delta), gui = 'bold' }, -- Popup menu: Selected item.
      PmenuSbar    { bg = Pmenu.bg }, -- Popup menu: Scrollbar.
      PmenuThumb   { bg = Pmenu.fg.mix(Pmenu.bg, 90) }, -- Popup menu: Thumb of the scrollbar.
@@ -133,9 +133,9 @@ local M = lush(function()
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
      Type           { fg = mc.ClassSymbols[1], gui = 'bold' }, -- (*) int, long, char, etc.
-     StorageClass   { fg = sp.highly_contrasting[1].fg }, --   static, register, volatile, etc.
-     Structure      { fg = sp.highly_contrasting[1].fg }, --   struct, union, enum, etc.
-     Typedef        { fg = sp.highly_contrasting[1].fg }, --   A typedef
+     StorageClass   { fg = sp.highly_contrasting[1].main }, --   static, register, volatile, etc.
+     Structure      { fg = sp.highly_contrasting[1].main }, --   struct, union, enum, etc.
+     Typedef        { fg = sp.highly_contrasting[1].main }, --   A typedef
 
     Special        { fg = mc.Punctuation[2] }, -- (*) Any special symbol, for example, markdownDelimiter (###).
     -- SpecialChar    { }, --   Special character in a constant
