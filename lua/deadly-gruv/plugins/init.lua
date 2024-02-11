@@ -5,13 +5,16 @@ local to_list, load_modules = utils.to_list, utils.load_modules
 
 local plugins = {
   'treesitter',
+  'lsp',
   'bufferline',
   'telescope',
   'dashboard',
   'nvim_ts_rainbow',
+  'nvim_treesitter_context',
   'quick_scope',
   'illuminate',
   'leap',
+  'mini_files',
   'sj',
   'lspsaga',
   'syntax_tree_surfer',
