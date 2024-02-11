@@ -6,11 +6,11 @@ local mc = require('deadly-gruv.colors').mc;
 local M = lush(function()
   return {
     -- * Keys.
-    --jsonKeyword { fg = c.error },
+    jsonKeyword { fg = mc.Symbols[4] }, -- Matches @field from treesitter.
     -- * Values.
-     jsonBoolean         { fg = mc.Symbols[6] }, --   A string constant: "this is a string"
-     jsonNumber         { fg = mc.ClassSymbols[2] }, --   A string constant: "this is a string"
-     jsonString         { fg = mc.Symbols[4].darken(3*delta) }, --   A string constant: "this is a string"
+     jsonBoolean        { fg = mc.Symbols[6] }, --   A nboolean constant.
+     jsonNumber         { fg = mc.ClassSymbols[2] }, --   A number constant.
+     jsonString         { fg = mc.Symbols[5] }, -- A string constant: "this is a string". Matches @variable from treesitter instead of string because it's used a lot.
 
     -- * Punctuation.
      jsonKeywordMatch         { fg = mc.Punctuation[1] }, -- A keyword *including* "" and : (I use it for latest).
