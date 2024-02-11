@@ -49,6 +49,7 @@ local semantic_palette = {
       main = cp.blue.bismark,
     },
     brown = cp.orange.brown,
+    green = cp.green.british_racing,
   },
 
   -- Symbols.

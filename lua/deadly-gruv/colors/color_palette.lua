@@ -16,6 +16,8 @@ local color_palette = {
 
   green = {
     verdun = hsl(66, 88, 28),
+    islamic = hsl(95, 100, 31),
+    british_racing = hsl(95, 100, 31),
   },
 
   mustard = {

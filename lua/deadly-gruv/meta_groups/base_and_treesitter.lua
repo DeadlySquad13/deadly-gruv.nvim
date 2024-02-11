@@ -11,6 +11,9 @@ local ch = require('deadly-gruv.colors.color_harmonies')
 -- easier to make them as an instances of lush syntax groups.
 local meta_groups = lush(function()
   return {
+    ---@exaple Changes in MiniFiles border when you edit some file in view.
+    dg_Changed({ fg = sp.contrasting.green }), -- TODO: Add color to palette.
+
     --- Matched instances.
     ---@exaple Search results.
     dg_Selection({ fg = sp.highly_contrasting[1].complementary, bg = sp.highly_contrasting[1].main }),
