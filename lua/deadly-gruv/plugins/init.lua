@@ -16,6 +16,7 @@ local plugins = {
   'lspsaga',
   'syntax_tree_surfer',
   'neo_tree',
+  'lsp_signature',
   -- Git.
   'diffview',
   'neogit',
