@@ -9,6 +9,7 @@ local languages = {
   'typescript',
   'typescriptreact',
   'markdown',
+  'cql',
 }
 
 local utils = require('deadly-gruv.utils')
