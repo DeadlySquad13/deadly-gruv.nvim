@@ -145,7 +145,7 @@ local base_and_treesitter_meta_groups = {
   MarkdownHeaders = {
     base_markdown_header_color,
     base_markdown_header_color.rotate(1*DEFAULT_ANGLE / 2),
-    base_markdown_header_color.rotate(2*DEFAULT_ANGLE / 2).darken(delta),
+    base_markdown_header_color.rotate(2*DEFAULT_ANGLE / 2).darken(7*delta).saturate(delta),
     base_markdown_header_color.rotate(3*DEFAULT_ANGLE / 2).darken(3*delta).desaturate(3*delta),
     base_markdown_header_color.rotate(4*DEFAULT_ANGLE / 2),
     base_markdown_header_color.rotate(5*DEFAULT_ANGLE / 2),
