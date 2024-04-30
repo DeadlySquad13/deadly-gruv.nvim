@@ -6,6 +6,7 @@ local delta = require('deadly-gruv.constants').delta
 local cp = require('deadly-gruv.colors.color_palette')
 local sp = require('deadly-gruv.colors.semantic_palette')
 local ch = require('deadly-gruv.colors.color_harmonies')
+local mc = require('deadly-gruv.colors').mc;
 
 -- It was a mistake to make meta groups just a collections of colors, it's way
 -- easier to make them as an instances of lush syntax groups.
@@ -38,6 +39,10 @@ local meta_groups = lush(function()
     dg_LabelSecondary({ fg = sp.highly_contrasting[5].complementary, bg = sp.highly_contrasting[5].main, gui = 'bold' }),
     -- Not used yet.
     dg_LabelTertiary({ fg = sp.highly_contrasting[3].complementary, bg = sp.highly_contrasting[3].main, gui = 'bold' }),
+
+    dg_Part({ fg = mc.Symbols[4] }),
+    dg_ReferenceUrl({ fg = mc.ConstantValues[1] }),
+    dg_ReferenceTitle({ fg = mc.Annotations[1] }),
   }
 end)
 

@@ -3,6 +3,9 @@ local lush = require("lush")
 local delta = require("deadly-gruv.constants").delta
 local mc = require("deadly-gruv.colors").mc
 local sp = require("deadly-gruv.colors").sp
+
+local mg = require('deadly-gruv.meta_groups')
+
 local base = require("deadly-gruv.base")
 
 local M = lush(function(injected_functions)
@@ -18,8 +21,8 @@ local M = lush(function(injected_functions)
 
     markdownOrderedListMarker({ fg = mc.ImportantFlowControlStatements[1] }),
 
-    markdownUrl({ fg = mc.ConstantValues[1] }),
-    markdownUrlTitle({ fg = mc.Annotations[1] }),
+    markdownUrl({ mg.base.dg_ReferenceUrl }),
+    markdownUrlTitle({ mg.base.dg_ReferenceTitle }),
 
     -- TODO: remove .markdown to make it markup style agnostic?
     -- Treesitter.

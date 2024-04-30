@@ -8,6 +8,8 @@ local sp = colors.sp;
 local mc = colors.mc;
 local delta = require('deadly-gruv.constants').delta
 
+local mg = require('deadly-gruv.meta_groups')
+
 local base = require('deadly-gruv.base');
 
 local treesitter = lush(function(injected_functions)
@@ -19,7 +21,7 @@ local treesitter = lush(function(injected_functions)
 
     sym'@method'             { fg = mc.ClassSymbols[3], gui = 'bold' }, -- Method calls and definitions.
     sym'@parameter'          { fg = mc.Symbols[3], gui = 'nocombine' } , -- Parameters of a function.
-    sym'@field'              { fg = mc.Symbols[4] } , -- Object and struct fields (mostly LSP?).
+    sym'@field'              { mg.base.dg_Part } , -- Object and struct fields (mostly LSP?).
     sym'@variable'           { fg = mc.Symbols[5], gui='nocombine' } , -- Variable names that don't fit into other categories.
     sym'@variable.member'           { sym'@field' } , -- Object and struct fields.
     sym'@function.builtin'        { fg = mc.Symbols[6], gui='nocombine' } , -- Built-in functions: `print` in Lua.
