@@ -7,8 +7,6 @@ local mc = require('deadly-gruv.colors').mc;
 local mg = require('deadly-gruv.meta_groups')
 
 local M = lush(function()
-  local sym = injected_functions.sym
-
   return {
     -- Section headings such as "SYNOPSIS", "DESCRIPTION".
     manSectionHeading { fg = mc.Symbols[2] }, -- In most cases is combined with `manBold`.

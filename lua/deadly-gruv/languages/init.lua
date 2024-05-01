@@ -11,6 +11,7 @@ local languages = {
   'markdown',
   'cql',
   'man',
+  'make',
 }
 
 local utils = require('deadly-gruv.utils')
