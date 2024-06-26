@@ -1,8 +1,9 @@
+-- Tree-Sitter syntax groups. Most link to corresponding
+-- vim syntax groups (e.g. sym'@keyword' => Keyword) by default.
+--
+-- See :h nvim-treesitter-highlights, some groups may not be listed, submit a PR fix to lush-template!
+
 local lush = require('lush');
-    -- Tree-Sitter syntax groups. Most link to corresponding
-    -- vim syntax groups (e.g. sym'@keyword' => Keyword) by default.
-    --
-    -- See :h nvim-treesitter-highlights, some groups may not be listed, submit a PR fix to lush-template!
 local colors = require('deadly-gruv.colors');
 local sp = colors.sp;
 local mc = colors.mc;
