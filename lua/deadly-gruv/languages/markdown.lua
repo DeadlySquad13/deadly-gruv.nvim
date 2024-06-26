@@ -12,12 +12,12 @@ local M = lush(function(injected_functions)
   local sym = injected_functions.sym
 
   return {
-    markdownH1({ fg = mc.MarkdownHeaders[1], gui = base.Title.gui }), -- Default value just need it for transformations below.
-    markdownH2({ fg = mc.MarkdownHeaders[2], gui = markdownH1.gui }),
-    markdownH3({ fg = mc.MarkdownHeaders[3], gui = markdownH1.gui }),
-    markdownH4({ fg = mc.MarkdownHeaders[4], gui = markdownH1.gui }),
-    markdownH5({ fg = mc.MarkdownHeaders[5], gui = markdownH1.gui }),
-    markdownH6({ fg = mc.MarkdownHeaders[6], gui = markdownH1.gui }),
+    markdownH1({ mg.base.dg_Header1 }),
+    markdownH2({ mg.base.dg_Header2 }),
+    markdownH3({ mg.base.dg_Header3 }),
+    markdownH4({ mg.base.dg_Header4 }),
+    markdownH5({ mg.base.dg_Header5 }),
+    markdownH6({ mg.base.dg_Header6 }),
 
     markdownOrderedListMarker({ fg = mc.ImportantFlowControlStatements[1] }),
 

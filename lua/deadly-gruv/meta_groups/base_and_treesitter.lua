@@ -43,9 +43,17 @@ local meta_groups = lush(function()
     dg_Part({ fg = mc.Symbols[4] }),
     dg_ReferenceUrl({ fg = mc.ConstantValues[1] }),
     dg_ReferenceTitle({ fg = mc.Annotations[1] }),
+
+
+    -- REFACTOR: gui was connected to Title.gui, not sure to which group it
+    -- should be connected here.
+    dg_Header1({ fg = mc.MarkdownHeaders[1], gui = "bold" }),
+    dg_Header2({ fg = mc.MarkdownHeaders[2], gui = Header1.gui }),
+    dg_Header3({ fg = mc.MarkdownHeaders[3], gui = Header1.gui }),
+    dg_Header4({ fg = mc.MarkdownHeaders[4], gui = Header1.gui }),
+    dg_Header5({ fg = mc.MarkdownHeaders[5], gui = Header1.gui }),
+    dg_Header6({ fg = mc.MarkdownHeaders[6], gui = Header1.gui }),
   }
 end)
 
 return meta_groups
-
-
