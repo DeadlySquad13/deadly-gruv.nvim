@@ -99,8 +99,8 @@ local M = lush(function()
     --CommentSemanticIndent1 { fg = mc.Summary[1], bg = c.error },
     --CommentSemanticIndent2 { fg = mc.Summary[2], bg = c.contrasting },
     --CommentSemanticIndent3 { fg = mc.Summary[3], bg = c.subtle },
-     SpecialComment { fg = mc.Summary[1], gui = 'bold' }, --   Special things inside a comment (e.g. '\n')
-     Comment        { fg = mc.Summary[2] }, -- Any comment
+     SpecialComment { fg = mc.Summary.special, gui = 'bold' }, --   Special things inside a comment (e.g. '\n')
+     Comment        { fg = mc.Summary.comment }, -- Any comment
 
     -- * Language constants.
      String         { fg = mc.ConstantValues[1] }, --   A string constant: "this is a string"
@@ -126,7 +126,7 @@ local M = lush(function()
      Operator       { fg = mc.PrimitiveOpearators[1] }, --   "sizeof", "+", "*", etc.
 
 
-    -- PreProc        { }, -- (*) Generic Preprocessor
+    PreProc        { gui = "italic" }, -- (*) Generic Preprocessor
      Include        { fg = mc.MetaStatements[1], gui = 'italic' }, --   Preprocessor #include
     -- Define         { }, --   Preprocessor #define
     -- Macro          { }, --   Same as Define
@@ -163,18 +163,20 @@ local M = lush(function()
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
-    DiagnosticError            { fg = sp.error } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticError            { fg = sp.error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     DiagnosticWarn             { fg = sp.warning }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticInfo             { fg = sp.info } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticHint             { fg = sp.hint } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticInfo             { fg = sp.info }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticHint             { fg = sp.hint }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    -- Underline variants. If undercurl is not available in terminal
+    -- environment, it will fallback to underline.
+    DiagnosticUnderlineError   { gui = "undercurl" },
+    DiagnosticUnderlineWarn    { gui = "undercurl" },
+    DiagnosticUnderlineInfo    { gui = "undercurl" },
+    DiagnosticUnderlineHint    { gui = "undercurl" },
     -- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
     -- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
     -- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
     -- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
-    -- DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
-    -- DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
-    -- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
-    -- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
     -- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
     -- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
     -- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.

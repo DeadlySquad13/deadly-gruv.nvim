@@ -21,8 +21,9 @@ local base_markdown_header_color = sp.highly_contrasting[3].main.rotate(-DEFAULT
 local base_and_treesitter_meta_groups = {
   -- Comments, docs, ...
   Summary = {
-    sp.contrasting[2],
-    sp.contrasting[1],
+    special = sp.contrasting[2],
+    comment = sp.contrasting[1],
+    docs = sp.info.mix(sp.contrasting[1], 40),
   },
 
   -- Class Symbols: classes, methods, constructors, class definitions, fields.

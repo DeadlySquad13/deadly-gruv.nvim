@@ -66,6 +66,7 @@ local treesitter = lush(function(injected_functions)
     -- sym'@repeat'             { } , -- Keywords related to loops: `for`, `while`, etc.
     -- sym'@storageClass'       { } , -- Keywords that affect how a variable is stored: `static`, `comptime`, `extern`, etc.
     -- sym'@string'             { } , -- String literals.
+    sym'@string.documentation'  { fg = mc.Summary.docs } , -- Docstrings (For example, `""" In Python """`).
     -- sym'@stringRegex'        { } , -- Regular expression literals.
     -- sym'@stringEscape'       { } , -- Escape characters within a string: `\n`, `\t`, etc.
     -- sym'@stringSpecial'      { } , -- Strings with special meaning that don't fit into the previous categories.
