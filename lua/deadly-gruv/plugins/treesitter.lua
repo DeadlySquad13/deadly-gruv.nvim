@@ -18,15 +18,15 @@ local treesitter = lush(function(injected_functions)
 
   return {
     -- Clases.
-    sym'@constructor'        { fg = mc.ClassSymbols[1] } , -- Constructor calls and definitions: `{}` in Lua, Java constructors, python (pd.Dataframe({column: col}))
+    sym'@constructor'        { mg.base.dg_ClassContructor }, -- Constructor calls and definitions: `{}` in Lua, Java constructors, python (pd.Dataframe({column: col}))
 
-    sym'@method'             { fg = mc.ClassSymbols[3], gui = 'bold' }, -- Method calls and definitions.
+    sym'@method'             { mg.base.dg_Method }, -- Method calls and definitions.
     sym'@parameter'          { fg = mc.Symbols[3], gui = 'nocombine' } , -- Parameters of a function.
-    sym'@field'              { mg.base.dg_Part } , -- Object and struct fields (mostly LSP?).
-    sym'@variable'           { fg = mc.Symbols[5], gui='nocombine' } , -- Variable names that don't fit into other categories.
+    sym'@field'              { mg.base.dg_Field } , -- Object and struct fields (mostly LSP?).
+    sym'@variable'           { mg.base.dg_Variable } , -- Variable names that don't fit into other categories.
     sym'@variable.member'           { sym'@field' } , -- Object and struct fields.
-    sym'@function.builtin'        { fg = mc.Symbols[6], gui='nocombine' } , -- Built-in functions: `print` in Lua.
-    sym'@variable.builtin'        { fg = mc.Symbols[7], gui='nocombine' } , -- Built-in functions: `print` in Lua ???.
+    sym'@function.builtin'        { mg.base.dg_FunctionBuiltin } , -- Built-in functions: `print` in Lua.
+    sym'@variable.builtin'        { mg.base.dg_VariableBuiltin } , -- Built-in functions: `print` in Lua ???.
     --
     -- sym'@attribute'          { } , -- Annotations that can be attached to the code to denote some kind of meta information. e.g. sp++/Dart attributes.
     -- sym'@boolean'            { } , -- Boolean literals: `True` and `False` in Python.
@@ -45,13 +45,13 @@ local treesitter = lush(function(injected_functions)
     sym'@function'           { base.Function } , -- Function calls and definitions.
     -- sym'@funcMacro'          { } , -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
     sym'@keyword'            { fg = mc.FlowControlStatements, gui = 'italic' } , -- Keywords that don't fit into other categories.
-    sym'@keyword.function'    { fg = mc.DeclarationKeywords[1], gui = 'italic' } , -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
-    sym'@keyword.operator'    { fg = mc.Operators[1] } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in sp.
+    sym'@keyword.function'    { mg.base.dg_Declaration, gui = 'italic' } , -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
+    sym'@keyword.operator'    { mg.base.dg_Operator } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in sp.
     sym'@keyword.return'      { base.Keyword } , -- Keywords like `return` and `yield`.
-    sym'@keyword.declaration' { fg = mc.DeclarationKeywords[1] } , -- Keywords like `local` in lua, `const` and `let` in ts.
-    sym'@keyword.export'      { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
-    sym'@keyword.import'      { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
-    sym'@include'             { fg = mc.MetaStatements[1], gui = 'italic' } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
+    sym'@keyword.declaration' { mg.base.dg_Declaration } , -- Keywords like `local` in lua, `const` and `let` in ts.
+    sym'@keyword.export'      { mg.base.dg_Module } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
+    sym'@keyword.import'      { mg.base.dg_Module } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
+    sym'@include'             { mg.base.dg_Module } , -- File or module inclusion keywords: `#include` in sp, `use` or `extern crate` in Rust.
     -- sym'@label'              { } , -- GOTO labels: `label:` in sp, and `::label::` in Lua.
     -- sym'@namespace'          { } , -- Identifiers referring to modules and namespaces.
     -- sym'@none'               { } , -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
@@ -89,8 +89,12 @@ local treesitter = lush(function(injected_functions)
     -- sym'@note'               { } , -- Text representation of an informational note.
      --sym'@warning'            { fg = sp.error } , -- Text representation of a warning note.
     -- sym'@danger'             { } , -- Text representation of a danger note.
-    sym'@type'               { fg = mc.Annotations[1] } , -- Type (and class) definitions and annotations.
+    sym'@type'               { mg.base.dg_Type } , -- Type (and class) definitions and annotations.
     sym'@type.builtin'        { fg = mc.Annotations.Builtin, gui = 'italic' } , -- Built-in types: `i32` in Rust.
+
+    -- # Markup (markdown, vimdoc...).
+    sym'@markup.raw.block'           { base.String } , -- Markup blocks without connection to specific lang. For instance, md triple backticks.
+    sym'@markup.raw.vimdoc'           { fg = mc.Symbols[2] } , -- Markup blocks without connection to specific lang. For instance, md single backticks.
 
     sym'@class.builtin'({ fg = mc.Symbols.Builtin[1] }),
     sym'@class.builtin.fundamental'({ sym'@class.builtin' }), -- Classes such as Function, Object.

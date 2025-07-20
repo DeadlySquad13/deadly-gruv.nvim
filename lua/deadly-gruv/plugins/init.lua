@@ -26,6 +26,7 @@ local plugins = {
   'indent_blankline',
 
   'marks',
+  'nvim_cmp',
 }
 
 local plugins_theme = lush.merge(to_list(load_modules('deadly-gruv.plugins', plugins)));
