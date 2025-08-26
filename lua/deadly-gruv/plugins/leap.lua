@@ -8,8 +8,7 @@ local mg = require("deadly-gruv.meta_groups")
 local M = lush(function()
   return {
     LeapMatch({ mg.base.dg_GlobalMatch }),
-    LeapLabelPrimary({ mg.base.dg_LabelPrimary }),
-    LeapLabelSecondary({ mg.base.dg_LabelSecondary }),
+    LeapLabel({ mg.base.dg_LabelPrimary }),
   }
 end)
 
