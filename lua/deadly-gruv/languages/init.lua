@@ -4,18 +4,19 @@ local utils = require('deadly-gruv.utils')
 local to_list, load_modules = utils.to_list, utils.load_modules
 
 local languages = {
-  'json',
-  'toml',
-  'python',
+  'cql',
   'css',
-  'lua',
   'html',
+  'json',
+  'lua',
+  'make',
+  'man',
+  'markdown',
+  'nix',
+  'python',
+  'toml',
   'typescript',
   'typescriptreact',
-  'markdown',
-  'cql',
-  'man',
-  'make',
 }
 
 local languages_theme = lush.merge(to_list(load_modules('deadly-gruv.languages', languages)));
