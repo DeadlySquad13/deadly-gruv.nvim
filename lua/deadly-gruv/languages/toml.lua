@@ -15,8 +15,13 @@ local M = lush(function(injected_functions)
 
   return {
     -- * Top-level keys: `[tasks]`
-    tomlTable { mg.base.dg_Header2 },
-    sym'@type.toml' { tomlTable },
+    sym'@table1.toml' { mg.base.dg_Header1, gui = "bold" },
+    sym'@table2.toml' { mg.base.dg_Header2, gui = "bold" },
+    sym'@table3.toml' { mg.base.dg_Header3, gui = "bold" },
+
+    -- QUESTION: Not sure where I've found this query, maybe it was deprecated in newer Treesitter versions.
+    -- Now I use `@table\d` instead.
+    sym'@type.toml' { mg.base.dg_Header1 },
     -- * Keys.
     tomlKey { json.jsonKeyword },
     sym'@property.toml' { tomlKey },
